@@ -8,6 +8,19 @@ describe Player do
   end
 
   describe 'Player#discard' do
-    it 'allows a player to replace a card in their hand'
+    it 'allows player to replace 1-3 cards in their hand'
+    it 'adds cards  to hand equal in number to discarded cards'
+  end
+
+  describe 'Player#fold' do
+    it 'should empty player\'s hand'
+  end
+
+  describe 'Player#see' do
+    it 'should reduce player\'s pot by see value'
+  end
+
+  describe 'Player#raise' do
+    it 'should reduce player\'s pot by see AND raise values'
   end
 end

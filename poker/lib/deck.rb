@@ -1,26 +1,26 @@
 require 'card'
 
 class Deck
-  attr_reader :cards
+  attr_reader :deck
   def initialize
-    @cards = []
-    add_cards
+    @deck = []
+    add_deck
   end
 
-  def add_cards
+  def add_deck
     VALUES.each do |value|
       SUITS.each do |suit|
-        @cards << Card.new(value, suit)
+        @deck << Card.new(value, suit)
       end
     end
     shuffle
   end
 
   def shuffle
-    @cards.shuffle!
+    @deck.shuffle!
   end
 
   def count
-    @cards.length
+    @deck.length
   end
 end

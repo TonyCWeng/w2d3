@@ -15,7 +15,7 @@ describe Deck do
   describe 'Deck#shuffle' do
     it 'shuffles the deck' do
       current_card = new_deck.cards[0].value
-      reshuffled =new_deck.shuffle
+      reshuffled = new_deck.shuffle
       expect(current_card).to_not eq(reshuffled[0].value)
     end
   end
