@@ -7,6 +7,7 @@ describe Game do
     it 'should initialize with 2 players'
     it 'should initialize with a default pool of 0'
     it 'should set current player to player1'
+    it 'should set burned cards to an empty array'
   end
 
   describe 'Game#deal' do

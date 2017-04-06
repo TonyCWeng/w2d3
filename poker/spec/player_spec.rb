@@ -14,6 +14,7 @@ describe Player do
 
   describe 'Player#fold' do
     it 'should empty player\'s hand'
+    it 'should remove self from round participants'
   end
 
   describe 'Player#see' do

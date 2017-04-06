@@ -16,6 +16,7 @@ class Player
   def fold
     #empties hand. If hand.size < 5, doesn't play
     @hand = []
+    participants - self
   end
 
   def see(bet)

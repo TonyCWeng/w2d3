@@ -2,18 +2,20 @@ require_relative 'player'
 require_relative 'hand'
 
 class Game
-  attr_reader :deck, :pool, :current_player
+  attr_reader :deck, :pool, :current_player, :participants
   def initialize(player1, player2)
     @deck = Deck.new
+    @burned_cards = []
     @player1 = player1
     @player2 = player2
     @pool = 0
     @current_player = player1
-    @players = []
+    @participants = []
   end
 
-  def add_player(new_player)
-    @players << new_player
+  def roster
+    @participants << @player1
+    @participants << @player2
   end
 
   def update_pool(current_bet)
@@ -27,26 +29,38 @@ class Game
   end
 
   def switch_player
-    @current_player == Player1
+    @players.rotate(1)
+    @current_player = @players[0]
   end
 
   def betting_round
     p "Fold, See, or Raise bet?"
     decision = gets.to_i
+    @current_player.decision
   end
 
   def draw_round
     p "Discard a card? (0-3)"
     decision = gets.to_i
-    decison == 0 ? next : decision.times {@current_player.discard}
+    decision.times {@current_player.discard}
   end
 
   def play_round
     deal
-    betting_round
-    draw_round
-    betting_round
-    round_winner = evaluate_hands
+
+    @participants.each do
+      betting_round
+    end
+
+    @participants.each do
+      draw_round
+    end
+
+    @participants.each do
+      betting_round
+    end
+    
+    round_winner = evaluate_hands(@participants)
     winnings(round_winner, @pool)
   end
 
@@ -60,6 +74,7 @@ class Game
       end
     end
     round_winner
+
   end
 
   def winnings(round_winner,pool)

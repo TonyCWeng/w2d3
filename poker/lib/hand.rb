@@ -19,11 +19,31 @@ class Hand
   end
 
   def hand_rank
-    @hand.values.each do |value|
-
-    end
+    total_points = 0
+    
   end
 
+  def flush?
+    all_suits
+    @hand.each do |card|
+      all_suits << card.suit
+    end
+    all_suits.uniq.length == 5
+  end
 
+  def straight?
+    all_values
+    @hand.each do |card|
+      all_values << card.value
+    end
+    all_values.sort.each_cons(2).all? {|a,b| b = a + 1}
+  end
 
+  def same_value?
+    all_values
+    @hand.each do |card|
+      all_values << card.value
+    end
+
+  end
 end
